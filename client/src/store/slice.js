@@ -9,11 +9,19 @@ const clientslice=createSlice({
             password:""
          },
          type:"Sign up",
+         frontendurl:"",
+         trimedurl:""
 
     },
     reducers:{
         setbackendemail(state,action){
             state.backendemail=action.payload;
+        },
+        settrimedurl(state,action){
+            state.trimedurl=action.payload;
+        },
+        setfrontendurl(state,action){
+            state.frontendurl=action.payload;
         },
         setAuthdata(state,action){
             const {name,value}=action.payload;

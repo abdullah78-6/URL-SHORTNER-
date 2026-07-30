@@ -5,10 +5,13 @@ import App from './App.jsx'
 import Clientstore from './store/store.js'
 import {Provider} from "react-redux"
 import {Toaster} from "react-hot-toast"
+import {BrowserRouter} from "react-router-dom"
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={Clientstore}>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
     <Toaster/>
     </Provider>
   </StrictMode>,
