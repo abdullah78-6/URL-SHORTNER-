@@ -11,10 +11,11 @@ const Register=async(req,res)=>{
     const {name,email,password}=req.body;
     try {
                     await db.query(
-        `CREATE TABLE IF NOT EXISTS users (
+        `CREATE TABLE  users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(100),
                 email VARCHAR(100) UNIQUE,
+                urls VARCHAR(100),
                 password VARCHAR(255)
             )
         `
@@ -100,6 +101,70 @@ const Getprofile=async(req,res)=>{
 
 }
 const Googlesignin=async(req,res)=>{
+    const {email,name}=req.body;
+//     try {
+//     const [exist]=await db.query(`SELECT*FROM users WHERE email=?`,[email]);
+//     const single=exist[0];
+//     if(single){
+//         const token=createtoken(single.id);
+//         return res.json({status:true,message:"Google Login Complete",email:single});
+// }
+//     else{
+//           const [result]= await db.execute(
+//         "INSERT INTO users(name,email,password) VALUES(?,?,?) ",[name,email,"GOOGLE_PASSWORD"]
+//         );
+//          const token=createtoken(result.id);
+//          const single2=result[result.id];
+  
+//          return res.json({status:true,message:"Google Login Complete",email:single2.email});
+    
+
+
+//     }
+try{
+           await db.query(
+        `CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(100),
+                email VARCHAR(100) UNIQUE,
+                urls VARCHAR(100),
+                password VARCHAR(255)
+            )
+        `
+    )
+    const [exist]=await db.query("SELECT * FROM users WHERE email = ?",[email]);
+    let user;
+    if(exist.length>0){
+        user=exist[0];
+    }else{
+        const [result]=await db.execute(
+             "INSERT INTO users(name,email,password) VALUES(?,?,?)",[name,email,"GOOGLE_LOGIN"]
+        );
+        const [rows]=await db.query(
+            "SELECT * FROM users WHERE id = ?",[result.insertId]
+        );
+        user=rows[0];
+    }
+    const token=createtoken(user.id);
+    res.cookie("token",token,{
+        httpOnly:true,
+        secure:true,
+        sameSite:"strict",
+        maxAge:24*60*60*1000,
+    });
+    return res.json({status:true,message:"Google Login Successful",email:{
+        id:user.id,
+        name:user.name,
+        email:user.email
+    }})
+
+}
+catch (error) {
+        console.log("Google server login error",error);
+        
+    }
+    
+   
 
 }
 const Logout=async(req,res)=>{

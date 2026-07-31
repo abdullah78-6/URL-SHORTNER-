@@ -7,6 +7,27 @@ const Url = ({url}) => {
     const frontendurl=useSelector(state=>state.main.frontendurl);
     const dispatch=useDispatch();
     const trimedurl=useSelector(state=>state.main.trimedurl);
+    const backendemail=useSelector(state=>state.main.backendemail);
+    const Logout=async()=>{
+      try {
+        const res=await axios.post(url+"/api/auth/logout",
+          {},
+          {
+          withCredentials:true
+          }
+        );
+        if(res.data.status){
+          toast.success(res.data.message);
+          dispatch(control.setbackendemail(""));
+        }
+        else{
+          toast.error(res.data.message);
+        }
+      } catch (error) {
+        console.log("logout server",error);
+        
+      }
+    }
     const Submiturl=async(e)=>{
         e.preventDefault();
         try {
@@ -49,8 +70,8 @@ const Url = ({url}) => {
             </form>
         </div>
         <div>
-            {/* {trimedurl?<a href={trimedurl} target="_blank">Trimed url</a>:<></>} */}
             <a href={trimedurl} target='_blank'>{trimedurl}</a>
+            {backendemail?<button className='bg-red-900 p-5' onClick={Logout}>Logout</button>:<></>}
            
         </div>
    

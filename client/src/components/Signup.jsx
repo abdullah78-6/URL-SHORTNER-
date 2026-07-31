@@ -3,6 +3,9 @@ import {useSelector,useDispatch} from "react-redux"
 import axios from "axios"
 import {toast} from "react-hot-toast"
 import { control } from '../store/slice'
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider , signInWithPopup } from "firebase/auth";
+import  {auth}  from '../../firebase.js'
 const Signup = ({url}) => {
     const dispatch=useDispatch();
     const Authdata=useSelector(state=>state.main.Authdata);
@@ -23,7 +26,7 @@ const Signup = ({url}) => {
         });
         if(res.data.status){
           dispatch(control.setbackendemail(res.data.email));
-          console.log("login oura hua ",res.data.email);
+          
         }
 
       } catch (error) {
@@ -36,26 +39,7 @@ const Signup = ({url}) => {
       Fetch();
 
     },[])
-    const Logout=async()=>{
-      try {
-        const res=await axios.post(url+"/api/auth/logout",
-          {},
-          {
-          withCredentials:true
-          }
-        );
-        if(res.data.status){
-          toast.success(res.data.message);
-          dispatch(control.setbackendemail(""));
-        }
-        else{
-          toast.error(res.data.message);
-        }
-      } catch (error) {
-        console.log("logout server",error);
-        
-      }
-    }
+    
     const Submit=async(e)=>{
       e.preventDefault();
       let newurl=url;
@@ -78,9 +62,7 @@ const Signup = ({url}) => {
         })
         if(res.data.status){
             dispatch(control.setbackendemail(res.data.email));
-            console.log("login oura hua ",res.data.email);
-        
-        }
+       }
         else{
             dispatch(control.setbackendemail(""));
         
@@ -103,7 +85,36 @@ const Signup = ({url}) => {
    
 
     }
-    const GoogleLogin=async()=>{
+    const GoogleLogin=async(e)=>{
+      e.preventDefault();
+      const provider=new GoogleAuthProvider();
+      const result=await signInWithPopup(auth,provider);
+      try {
+        const res=await axios.post(url+"/api/auth/google_signin",
+          {
+            email:result.user.email,
+            name:result.user.displayName
+          
+          },
+          
+          {
+            withCredentials:true
+          }
+
+        );
+        if(res.data.status){
+          toast.success(res.data.message);
+          Fetch();
+          dispatch(control.setbackendemail(res.data.email));
+        }
+        else{
+        toast.error(res.data.message);
+        }
+        
+      } catch (error) {
+        console.log("goolge login server error",error);
+        
+      }
 
     }
   return (
@@ -166,7 +177,7 @@ const Signup = ({url}) => {
          
           </div>
         </form>
-     {backendemail?<button onClick={Logout}>Logout</button>:<></>}
+     
      {backendemail?<h1>{backendemail.email}</h1>:<></>}
       </div>
       
