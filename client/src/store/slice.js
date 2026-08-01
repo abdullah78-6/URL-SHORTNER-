@@ -10,7 +10,8 @@ const clientslice=createSlice({
          },
          type:"Sign up",
          frontendurl:"",
-         trimedurl:""
+         trimedurl:"",
+         Historyurl:[]
 
     },
     reducers:{
@@ -19,6 +20,9 @@ const clientslice=createSlice({
         },
         settrimedurl(state,action){
             state.trimedurl=action.payload;
+        },
+        setHistoryurl(state,action){
+            state.Historyurl=action.payload;
         },
         setfrontendurl(state,action){
             state.frontendurl=action.payload;

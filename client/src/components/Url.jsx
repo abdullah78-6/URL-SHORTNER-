@@ -19,6 +19,7 @@ const Url = ({url}) => {
         if(res.data.status){
           toast.success(res.data.message);
           dispatch(control.setbackendemail(""));
+          dispatch(control.settrimedurl(""));
         }
         else{
           toast.error(res.data.message);

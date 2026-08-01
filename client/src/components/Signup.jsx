@@ -118,35 +118,35 @@ const Signup = ({url}) => {
 
     }
   return (
-    <div>
-      <div>
-        <form onSubmit={Submit}>
+    <div className='font-semibold capitalize h-screen text-gray-900 '>
+      <div className='flex justify-center items-center h-screen'>
+        <form onSubmit={Submit} className='flex justify-center items-center flex-col gap-6 border-2 p-15 rounded-xl bg-[#cfd6d8] shadow-2xs'>
           {type=="Sign up"&&
-          <div>
+          <div className='flex  items-center gap-5 flex-col'>
             
           <div>
-            <label htmlFor='name'>Enter Name</label>
+            <label className='text-xl  text-[#6a58e0]' htmlFor='name'>Enter Name</label>
           </div>
           <div>
-            <input onChange={Onchangehandler} name="name" value={Authdata.name} type="text"placeholder='Full Name 'required id="name"/>
+            <input className=' border-2 border-amber-900 px-7 py-3  rounded-lg  focus:ring-2 ring-blue-600  ' onChange={Onchangehandler} name="name" value={Authdata.name} type="text"placeholder='Full Name 'required id="name"/>
           </div>
           </div>}
          
-          <div>
+          <div className='flex items-center gap-5 flex-col'>
          
           <div>
-            <label htmlFor='email'>Enter Email</label>
+            <label  className='text-xl  text-[#6a58e0]'  htmlFor='email'>Enter Email</label>
           </div>
           <div>
-            <input onChange={Onchangehandler} name="email" value={Authdata.email} type="email"placeholder='Email Id'required id="email"/>
+            <input className=' border-2 border-amber-900 px-7 py-3  rounded-lg  focus:ring-2 ring-blue-600  ' onChange={Onchangehandler} name="email" value={Authdata.email} type="email"placeholder='Email Id'required id="email"/>
           </div>
           </div>
+          <div className='flex  items-center gap-5 flex-col'>
           <div>
-          <div>
-            <label htmlFor='password'>Password</label>
+            <label className='text-xl  text-[#6a58e0]' htmlFor='password'>Password</label>
           </div>
           <div>
-            <input onChange={Onchangehandler} name="password" value={Authdata.password} type="password"placeholder='Enter Password'required id="password"/>
+            <input className=' border-2 border-amber-900 px-7 py-3  rounded-lg  focus:ring-2 ring-blue-600  ' onChange={Onchangehandler} name="password" value={Authdata.password} type="password"placeholder='Enter Password'required id="password"/>
           </div>
           </div>
           
@@ -154,31 +154,31 @@ const Signup = ({url}) => {
         
             {type==="Sign up"?
             <div>
-            <button type="button" onClick={()=>dispatch(control.settype("login"))}>Already have a account</button>
+            <button className='bg-[#776f77] hover:scale-110 transition ease-in-out duration-150 p-2 px-9 rounded-lg text-white ' type="button" onClick={()=>dispatch(control.settype("login"))}>Already have a account</button>
             </div>
             :
             <div>
-            <button onClick={()=>dispatch(control.settype("Sign up"))} type="button">Create a new account</button>
+            <button className='bg-[#776f77] hover:scale-110 transition ease-in-out duration-150 p-2 px-9 rounded-lg text-white ' onClick={()=>dispatch(control.settype("Sign up"))} type="button">Create a new account</button>
             </div>}
            {type==="Sign up"?
            <div>
           
-           <button type='submit'>Sign Up</button>
+           <button className='bg-[#210F37] hover:scale-110 transition ease-in-out duration-150 py-2 px-9 text-white rounded-3xl ' type='submit'>Sign Up</button>
            </div>
            :
            <div>
-           <button type='submit'>Sign in </button>
+           <button className='bg-[#210F37] hover:scale-110 transition ease-in-out duration-150 py-2 px-9 text-white rounded-3xl ' type='submit'>Sign in </button>
            </div>
            }
            {type==="login"&&
               <div>
-              <button type="button" onClick={GoogleLogin}>Continue with Google</button>
+              <button  className='flex justify-center items-center gap-4 bg-gray-400 p-4 text-gray-900 rounded-xl hover:scale-110 transition ease-in-out duration-150   ' type="button" onClick={GoogleLogin}> <span className='text-2xl'><FcGoogle/></span>Continue with Google </button>
               </div>}
          
           </div>
         </form>
      
-     {backendemail?<h1>{backendemail.email}</h1>:<></>}
+     
       </div>
       
     </div>
