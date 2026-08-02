@@ -38,7 +38,7 @@ function App() {
     
       
     </Routes>
-    <h1>{backendemail.email}</h1>
+    
   </div>
 
 

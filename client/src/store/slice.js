@@ -11,12 +11,18 @@ const clientslice=createSlice({
          type:"Sign up",
          frontendurl:"",
          trimedurl:"",
-         Historyurl:[]
+         Historyurl:[],
+         barcode:"",
+         navclass:""
+
 
     },
     reducers:{
         setbackendemail(state,action){
             state.backendemail=action.payload;
+        },
+        setbarcode(state,action){
+            state.barcode=action.payload;
         },
         settrimedurl(state,action){
             state.trimedurl=action.payload;
@@ -30,6 +36,10 @@ const clientslice=createSlice({
         setAuthdata(state,action){
             const {name,value}=action.payload;
            state.Authdata[name]=value;
+
+        },
+        setnavclass(state,action){
+            state.navclass=action.payload;
 
         },
         settype(state,action){

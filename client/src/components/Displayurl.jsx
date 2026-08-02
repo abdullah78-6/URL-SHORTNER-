@@ -41,7 +41,7 @@ Fetch();
 },[])
   return (
     <div>
-        <h1>URL HISTORY OF THIS DATE AND TIME {date.toLocaleString()}</h1>
+        <h1>RECENT URLs OF CURRENT AND OLD DATES {date.toLocaleString()}</h1>
         <div>
             
     {backendemail&&allurls

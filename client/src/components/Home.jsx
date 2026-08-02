@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 const Home = ({url}) => {
 return (
     <div>
-      <Navbar/>
+      <Navbar url={url}/>
       <div className='mt-20'>
       <Url url={url}/>
       <Displayurl url={url}/>
