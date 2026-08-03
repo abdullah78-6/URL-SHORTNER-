@@ -29,16 +29,16 @@ const Navbar = ({url}) => {
   const backendemail=useSelector(state=>state.main.backendemail);
   const navclass=useSelector(state=>state.main.navclass);
   return (
-    <div className='font-semibold p-4 capitalize bg-gradient-to-r from-[#2689ca] to-[#5A9690] text-white'>
+    <div className='font-semibold p-4 capitalize bg-gradient-to-r from-[#48abec] to-[#6773b4] text-white'>
       
       <div className='flex justify-between items-center' >
-          <h1 onClick={()=>dispatch(control.setnavclass(""))} className='text-4xl cursor-pointer'>url-<span className='text-[#daa8cc]'>trimmer</span></h1>
+          <h1 onClick={()=>dispatch(control.setnavclass(""))} className='text-4xl text-[#314ce0] cursor-pointer'>Link<span className='text-pink-500'>Short</span></h1>
     
       
         <ul className='flex justify-center items-center gap-35 capitalize text-xl'>
-        <li onClick={()=>dispatch(control.setnavclass("one"))} className={`${navclass==="one"?"border-b-4 border-[#C5B3D3]  cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`}>pricing</li>
-        <li onClick={()=>dispatch(control.setnavclass("two"))} className={`${navclass==="two"?"border-b-4 border-[#C5B3D3] cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`}  >tools</li>
-        <li onClick={()=>dispatch(control.setnavclass("three"))} className={`${navclass==="three"?"border-b-4 border-[#C5B3D3] cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`} >help</li>
+        <li onClick={()=>dispatch(control.setnavclass("one"))} className={`${navclass==="one"?"border-b-4 border-pink-500  cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`}>pricing</li>
+        <li onClick={()=>dispatch(control.setnavclass("two"))} className={`${navclass==="two"?"border-b-4 border-pink-500 cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`}  >tools</li>
+        <li onClick={()=>dispatch(control.setnavclass("three"))} className={`${navclass==="three"?"border-b-4 border-pink-500 cursor-pointer hover:text-blue-300  transition ease-in-out duration-200":"cursor-pointer hover:text-blue-300 hover:underline transition ease-in-out duration-200"}`} >help</li>
         </ul>
         
       

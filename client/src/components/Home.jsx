@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 import Url from './Url'
 import Displayurl from './Displayurl'
 import Navbar from './Navbar'
+import Footer from './Footer'
+import Pricing from './Pricing'
+import Tools from './Tools'
+import Help from './Help'
 const Home = ({url}) => {
 return (
     <div>
@@ -9,6 +13,10 @@ return (
       <div className='mt-20'>
       <Url url={url}/>
       <Displayurl url={url}/>
+      <Pricing/>
+      <Help/>
+      <Tools/>
+      <Footer/>
       </div>
       
     </div>

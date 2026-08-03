@@ -75,51 +75,134 @@ const Url = ({url}) => {
         toast.success("Copied");
     }
   return (
-    <div>
-        <div>
-            <form onSubmit={Submiturl}>
-                <div className='flex justify-center items-center gap-4 text-xl flex-col'>
-                    
-                    <div>
-                        <label htmlFor='url'>Enter long url</label>
-                    </div>
-                    <div>
-                        <input onChange={(e)=>dispatch(control.setfrontendurl(e.target.value))} id="url" type="text" placeholder='Enter Long Url' required/>
-                    </div>
-                    <div >
-                        <div>
-                        {trimedurl?<button type='button' onClick={Copyurl}><FaCopy/></button>:<></>}
-                   </div>
-                    </div>
-                    <div>
-                    <button type="submit">Short Url</button>
-                </div>
-                </div>
-                
-            </form>
-        </div>
-        <div>
-            <a href={trimedurl} target='_blank'>{trimedurl}</a>
-           
-           
-        </div>
-        <div>
-          {barcode?<QRCodeCanvas value={barcode}/>:<></>}
-        </div>
-        <div>
-            {barcode?<button onClick={Download}><FaDownload /></button>:<></>}
-        </div>
-        <div >
-            {trimedurl&&!barcode?<button className='flex justify-center items-center gap-3 text-2xl bg-amber-300 p-2 text-lea' onClick={Genrateqr}>Genrate QR <span><FaQrcode /></span></button>:<></>}
+  <div className="min-h-screen bg-gradient-to-b from-[#f8fcff] via-[#eef8ff] to-white px-5 py-12">
+
+    <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl border border-blue-100 p-8 md:p-10">
+
+      <div className="text-center">
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-[#314ce0]">Shorten</span>{" "}
+          <span className="text-pink-500">Your URL</span>
+        </h1>
+
+        <p className="mt-3 text-gray-600">
+          Convert long URLs into short, clean and shareable links instantly.
+        </p>
+      </div>
+
+      <form onSubmit={Submiturl} className="mt-10">
+
+        <div className="space-y-6">
+
+          <div>
+            <label
+              htmlFor="url"
+              className="block text-lg font-semibold text-gray-800 mb-2"
+            >
+              Enter Long URL
+            </label>
+
+            <input
+              id="url"
+              type="text"
+              required
+              placeholder="https://example.com/very-long-url"
+              onChange={(e) =>
+                dispatch(control.setfrontendurl(e.target.value))
+              }
+              className="w-full rounded-xl border border-blue-200 px-5 py-3 outline-none focus:border-[#314ce0] focus:ring-2 focus:ring-blue-200 transition"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#314ce0] text-white py-3 rounded-xl font-semibold hover:bg-[#2439c4] transition duration-300"
+          >
+            Short URL
+          </button>
 
         </div>
-        <div>
-            {barcode?<button  onClick={Deleteqr}>DELETE QR</button>:<></>}
+
+      </form>
+
+      {trimedurl && (
+        <div className="mt-10">
+
+          <h2 className="text-xl font-semibold text-gray-800 mb-3">
+            Your Short URL
+          </h2>
+
+          <div className="flex flex-col md:flex-row items-center gap-4">
+
+            <a
+              href={trimedurl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex-1 break-all bg-blue-50 border border-blue-100 rounded-xl px-5 py-3 text-[#314ce0] font-medium"
+            >
+              {trimedurl}
+            </a>
+
+            <button
+              type="button"
+              onClick={Copyurl}
+              className="w-14 h-14 rounded-xl bg-pink-500 text-white flex justify-center items-center hover:bg-pink-600 transition"
+            >
+              <FaCopy size={20} />
+            </button>
+
+          </div>
+
         </div>
-        
-   
+      )}
+
+      {trimedurl && !barcode && (
+        <div className="flex justify-center mt-10">
+
+          <button
+            onClick={Genrateqr}
+            className="flex items-center gap-3 bg-[#314ce0] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#2439c4] transition"
+          >
+            Generate QR
+            <FaQrcode />
+          </button>
+
+        </div>
+      )}
+
+      {barcode && (
+        <div className="mt-10 flex flex-col items-center">
+
+          <div className="bg-white p-5 rounded-2xl shadow-lg border border-blue-100">
+            <QRCodeCanvas value={barcode} />
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+
+            <button
+              onClick={Download}
+              className="flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition"
+            >
+              <FaDownload />
+              Download
+            </button>
+
+            <button
+              onClick={Deleteqr}
+              className="bg-pink-500 text-white px-6 py-3 rounded-xl hover:bg-pink-600 transition"
+            >
+              Delete QR
+            </button>
+
+          </div>
+
+        </div>
+      )}
+
     </div>
-  )
+
+  </div>
+);
 }
 
 export default Url
