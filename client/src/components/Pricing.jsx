@@ -1,3 +1,4 @@
+import {motion} from "motion/react"
 const Pricing = () => {
   const plans = [
     {
@@ -45,7 +46,12 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-[#eef8ff] to-white">
+    <motion.section
+    initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+     className="py-20 bg-gradient-to-b from-white via-[#eef8ff] to-white" id="pricing">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center">
@@ -122,7 +128,7 @@ const Pricing = () => {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

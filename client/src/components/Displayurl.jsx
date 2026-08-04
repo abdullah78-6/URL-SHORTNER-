@@ -3,6 +3,7 @@ import axios from "axios"
 import { control } from '../store/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import {toast} from "react-hot-toast"
+import {motion} from "motion/react"
 const Displayurl = ({url}) => {
 const dispatch=useDispatch();
 const date=new Date();
@@ -43,7 +44,12 @@ Fetch();
 
 },[])
   return (
-  <div className="max-w-6xl mx-auto px-4 py-10">
+  <motion.div
+  initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+   className="max-w-6xl mx-auto px-4 py-10">
 
     <div className="text-center">
       <h1 className="text-3xl md:text-4xl font-bold text-[#314ce0]">
@@ -96,7 +102,7 @@ Fetch();
 
     </div>
 
-  </div>
+  </motion.div>
 );
 
 }

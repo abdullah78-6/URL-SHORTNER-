@@ -8,13 +8,14 @@ import {QRCodeCanvas} from "qrcode.react";
 import { FaCopy } from "react-icons/fa";
 import { FaQrcode } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
+import { motion } from "motion/react";
 const Url = ({url}) => {
     const frontendurl=useSelector(state=>state.main.frontendurl);
     const dispatch=useDispatch();
     const trimedurl=useSelector(state=>state.main.trimedurl);
     const backendemail=useSelector(state=>state.main.backendemail);
     const barcode=useSelector(state=>state.main.barcode);
-    
+  const mobikemenu=useSelector(state=>state.main.mobilemenu);    
     const Submiturl=async(e)=>{
         e.preventDefault();
         try {
@@ -75,7 +76,12 @@ const Url = ({url}) => {
         toast.success("Copied");
     }
   return (
-  <div className="min-h-screen bg-gradient-to-b from-[#f8fcff] via-[#eef8ff] to-white px-5 py-12">
+  <motion.div
+  initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+   className={`min-h-screen bg-gradient-to-b from-[#f8fcff] via-[#eef8ff] to-white px-5 py-12 ${mobikemenu&&"mt-80 lg:mt-0 xl:mt-0"}`}>
 
     <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl border border-blue-100 p-8 md:p-10">
 
@@ -201,7 +207,7 @@ const Url = ({url}) => {
 
     </div>
 
-  </div>
+  </motion.div>
 );
 }
 

@@ -11,7 +11,7 @@ const Register=async(req,res)=>{
     const {name,email,password}=req.body;
     try {
                     await db.query(
-        `CREATE TABLE  users (
+        `CREATE TABLE IF NOT EXISTS  users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(100),
                 email VARCHAR(100) UNIQUE,

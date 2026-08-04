@@ -13,7 +13,8 @@ const clientslice=createSlice({
          trimedurl:"",
          Historyurl:[],
          barcode:"",
-         navclass:""
+         navclass:"",
+         mobilemenu:false
 
 
     },
@@ -23,6 +24,9 @@ const clientslice=createSlice({
         },
         setbarcode(state,action){
             state.barcode=action.payload;
+        },
+        setmobilemenu(state,action){
+            state.mobilemenu=action.payload;
         },
         settrimedurl(state,action){
             state.trimedurl=action.payload;

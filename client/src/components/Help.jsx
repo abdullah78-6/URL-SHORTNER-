@@ -1,5 +1,6 @@
 import React from "react";
 import {FaQuestionCircle,FaLink,FaCopy,FaShieldAlt,FaBolt,} from "react-icons/fa";
+import {motion} from "motion/react"
 const Help = () => {
   const helpItems = [
     {
@@ -29,7 +30,12 @@ const Help = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#f8fcff] to-[#eef8ff]">
+    <motion.section
+    initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+     className="py-20 bg-gradient-to-b from-[#f8fcff] to-[#eef8ff]" id="help">
       <div className="max-w-6xl mx-auto px-6">
 
         <div className="text-center">
@@ -51,7 +57,7 @@ const Help = () => {
         <div className="grid md:grid-cols-2 gap-8 mt-14">
           {helpItems.map((item, index) => (
             <div
-              key={index}
+            key={index}
               className="bg-white rounded-2xl border border-blue-100 p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-xl bg-[#314ce0]/10 text-[#314ce0] flex items-center justify-center text-xl">
@@ -69,7 +75,12 @@ const Help = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-white border border-blue-100 rounded-2xl p-8 text-center shadow-sm">
+        <motion.div
+        initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+         className="mt-16 bg-white border border-blue-100 rounded-2xl p-8 text-center shadow-sm">
           <h2 className="text-2xl font-bold text-gray-900">
             Still Need Help?
           </h2>
@@ -83,10 +94,10 @@ const Help = () => {
           <div className="mt-6 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#314ce0] text-white font-semibold">
             support@linkshort.com
           </div>
-        </div>
+        </motion.div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

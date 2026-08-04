@@ -1,4 +1,5 @@
 import {FaLink,FaCopy,FaLock,FaBolt,FaQrcode,FaChartLine,} from "react-icons/fa";
+import {motion} from "motion/react"
 const tools = [
   {
     icon: <FaLink size={28} />,
@@ -23,7 +24,12 @@ const tools = [
 
 const Tools = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-[#eef8ff] to-white">
+    <motion.section
+    initial={{ opacity: 0, y: 70 }}
+    whileInView={{ opacity: 5, y: 0 }}
+    transition={{ duration: 0.6, delay:  0.15 }}
+    viewport={{ once: false }}
+     className="py-20 bg-gradient-to-b from-white via-[#eef8ff] to-white" id="tools">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center">
@@ -42,8 +48,8 @@ const Tools = () => {
 
           {tools.map((tool, index) => (
             <div
-              key={index}
-              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+             key={index}
+            className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
               <div className="w-14 h-14 rounded-xl bg-[#314ce0]/10 text-[#314ce0] flex items-center justify-center">
                 {tool.icon}
@@ -65,7 +71,7 @@ const Tools = () => {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
