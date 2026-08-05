@@ -10,7 +10,7 @@ const Shorturl=async(req,res)=>{
  
        const shortid=nanoid(2);
        urldatabase.set(shortid,frontendurl);
-       const shorturl=`http://localhost:9000/${shortid}`;
+       const shorturl=`https://sv-23d0.onrender.com/${shortid}`;
        const [rows]=await db.query(
         "SELECT urls FROM users WHERE id=?",[userid]
        )
