@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import axios from "axios"
 function App() {
-  const backendeurl="http://localhost:9000"
+  const backendeurl="https://sv-23d0.onrender.com"
   const backendemail=useSelector(state=>state.main.backendemail);
   const dispatch=useDispatch();
   const Fetch=async()=>{
