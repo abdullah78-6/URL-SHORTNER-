@@ -64,7 +64,7 @@ const Login=async(req,res)=>{
                 res.cookie("token",token,{
                     httpOnly:true,
                     secure:true,
-                    sameSite:"strict",//strict for local server
+                    sameSite:"none",//strict for local server
                     maxAge:24*60*60*1000
                 })
         
@@ -149,7 +149,7 @@ try{
     res.cookie("token",token,{
         httpOnly:true,
         secure:true,
-        sameSite:"strict",
+        sameSite:"none",
         maxAge:24*60*60*1000,
     });
     return res.json({status:true,message:"Google Login Successful",email:{
@@ -172,7 +172,7 @@ const Logout=async(req,res)=>{
         res.clearCookie("token",{
         httpOnly:true,
         secure: true,
-        sameSite:"strict"//strict for local server
+        sameSite:"none"//strict for local server
     });
     return res.json({status:true,message:"Logged Out "})
         
